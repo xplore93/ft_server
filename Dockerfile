@@ -22,7 +22,7 @@ COPY srcs/wp-config.php /var/www/html/
 #SLL SETUP
 RUN mkdir ~/mkcert &&\
 	cd ~/mkcert &&\
-	wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.1/mkcert-v1.4.1-linux-amd64 > /dev/null &&\
+	wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.1/mkcert-v1.4.1-linux-amd64 &&\
 	mv mkcert-v1.4.1-linux-amd64 mkcert &&\
   	chmod +x mkcert &&\
 	./mkcert -install && ./mkcert localhost
@@ -36,7 +36,7 @@ RUN service mysql start && \
 	mysql wordpress -u root --password=  < wordpress.sql && rm wordpress.sql
 
 #PHPMYADMIN INSTALL
-RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.0.0-rc1/phpMyAdmin-5.0.0-rc1-all-languages.tar.gz > /dev/null && \
+RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.0.0-rc1/phpMyAdmin-5.0.0-rc1-all-languages.tar.gz && \
 	mkdir /var/www/html/phpmyadmin && \
 	tar xzf phpMyAdmin-5.0.0-rc1-all-languages.tar.gz --strip-components=1 -C /var/www/html/phpmyadmin && \
 	rm phpMyAdmin-5.0.0-rc1-all-languages.tar.gz

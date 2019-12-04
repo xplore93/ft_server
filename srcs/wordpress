@@ -1,0 +1,24 @@
+server {
+	listen 80;
+	root /var/www/html;
+	index index.php index.html index.htm index.nginx-debian.html;
+	server_name wordpress;
+
+	listen 443 ssl;
+	ssl_certificate /root/mkcert/localhost.pem;
+	ssl_certificate_key /root/mkcert/localhost-key.pem;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+
+	location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass
+			unix:/var/run/php/php7.3-fpm.sock;
+	}
+
+	location ~ /\.ht {
+		deny all;
+	}
+}

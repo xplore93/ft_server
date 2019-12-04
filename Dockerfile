@@ -6,7 +6,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Install Nginx, MySQL, PHP, Wget and LibNSS3-Tools
 RUN apt-get update && \
-	apt-get install -y nginx mariadb-server php-fpm php-mysql wget libnss3-tools
+	apt-get install -y nginx mariadb-server php-fpm php-mysql wget
 
 # Copy the config file for Nginx
 COPY srcs/wordpress /etc/nginx/sites-available/wordpress
